@@ -10,13 +10,13 @@ const options = {
         },
         servers: [
             {
-                url: "http://localhost:3000",
+                url: "https://alfred-backend-beta.vercel.app",
             },
         ],
         components: {
             securitySchemes: {
                 bearerAuth: {
-                    type: "http",
+                    type: "https",
                     scheme: "bearer",
                     bearerFormat: "JWT",
                 },
