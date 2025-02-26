@@ -2,10 +2,10 @@ const Flashcard = require("../models/flashcardModel");
 const User = require("../models/userModel");
 
 const calculateNextReview = (box) => {
-    const intervals = [1, 2, 5, 10]; // Example intervals in days
+    const intervals = [10, 20, 50, 100]; // Example intervals in days
     const nextReviewDate = new Date();
-    nextReviewDate.setDate(
-        nextReviewDate.getDate() + (intervals[box - 1] || 10)
+    nextReviewDate.setSeconds(
+        nextReviewDate.getSeconds() + (intervals[box - 1] || 100)
     );
     return nextReviewDate;
 };
@@ -25,7 +25,6 @@ exports.getAllFlashcards = async (req, res) => {
         const now = new Date();
         const flashcards = await Flashcard.find({
             user: req.user.id,
-            nextReview: { $lte: now },
         });
         res.status(200).json(flashcards);
     } catch (error) {
